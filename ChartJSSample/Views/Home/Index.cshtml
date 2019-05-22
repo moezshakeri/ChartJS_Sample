@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<script src="~/Scripts/Chart.js"></script>
+
+<div class="row">
+    <div class="col-12">
+        <canvas id="myChart" width="400" height="100"></canvas>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    var labels = @Html.Raw(Json.Encode(ViewBag.labels));
+    var values = @Html.Raw(Json.Encode(ViewBag.values));
+
+    var ctx = $("#myChart");
+
+    var barChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "گزارش مشاغل",
+                data: values,
+                backgroundColor: ["rgba(206, 0, 199, .5)", "rgba(0,18,255,.5)", "rgba(206, 0, 199, .5)", "rgba(0,18,255,.5)", "rgba(206, 0, 199, .5)", "rgba(0,18,255,.5)", "rgba(206, 0, 199, .5)", "rgba(0,18,255,.5)", "rgba(206, 0, 199, .5)", "rgba(0,18,255,.5)"],
+                borderColor: ["rgb(114,2,110)", "rgb(4,15,159)", "rgb(114,2,110)", "rgb(4,15,159)", "rgb(114,2,110)", "rgb(4,15,159)", "rgb(114,2,110)", "rgb(4,15,159)", "rgb(114,2,110)", "rgb(4,15,159)"],
+                borderWidth:1
+            }]
+        },
+        options: {
+            maintainAspectRation: true,
+            scales: { xAxes: [{ ticks: { beginAtZero: true } }] },
+            legend: { display: true }
+        },
+    });
+
+</script>
